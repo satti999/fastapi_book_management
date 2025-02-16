@@ -1,14 +1,14 @@
 from sqlmodel import Session, select
-from app.models.user_model import User
+from ..models.user_model import User
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 
 
 class UserController:
-   def __init__(self, db: Session):
+   def __init__(self, db):
         self.db = db
     
-   def sign_up(self, user: User):
+   def sign_up(self, user):
         email=user.email
         password=user.password
         existing_user=self.db.exec(select(User).filter(User.email==email).first())
