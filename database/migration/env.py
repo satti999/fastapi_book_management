@@ -9,11 +9,10 @@ import sys
 from pathlib import Path
 
 root_dir = str(Path(__file__).resolve().parent.parent.parent)
+
 sys.path.append(root_dir)
 
 # Import your SQLModel models here
-from app.models.user_model import User
-from app.models.book_model import Book
 
 
 # this is the Alembic Config object, which provides
