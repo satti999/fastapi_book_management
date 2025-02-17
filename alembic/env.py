@@ -1,20 +1,11 @@
 from logging.config import fileConfig
-from sqlmodel import SQLModel
-
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
+from database.db_connection import Base
+from models.user_model import User
+from models.book_model import Book
 from alembic import context
-import sys
-from pathlib import Path
-
-root_dir = str(Path(__file__).resolve().parent.parent.parent)
-sys.path.append(root_dir)
-
-# Import your SQLModel models here
-from app.models.user_model import User
-from app.models.book_model import Book
-
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -25,12 +16,12 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-
 # add your model's MetaData object here
 # for 'autogenerate' support
 # from myapp import mymodel
+
 # target_metadata = mymodel.Base.metadata
-target_metadata = SQLModel.metadata
+target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
@@ -76,9 +67,7 @@ def run_migrations_online() -> None:
     )
 
     with connectable.connect() as connection:
-        context.configure(
-            connection=connection, target_metadata=target_metadata
-        )
+        context.configure(connection=connection, target_metadata=target_metadata)
 
         with context.begin_transaction():
             context.run_migrations()

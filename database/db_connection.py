@@ -5,6 +5,9 @@ SQLALCHEMY_DATABASE_URL = "postgresql://postgres:admin@localhost:5432/fA_book_db
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL, echo=True)  # ✅ Add echo for debugging
 
+from sqlalchemy.orm import declarative_base
+
+Base = declarative_base()
 
 def init_db():
     """Initialize the database and create tables."""
