@@ -1,5 +1,5 @@
 from sqlmodel import Session, select
-from ..models.book_model import Book
+from models.book_model import Book
 
 
 class BookController:

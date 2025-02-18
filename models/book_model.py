@@ -1,5 +1,5 @@
 from sqlmodel import SQLModel, Field, Relationship
-from app.models.user_model import User
+from models.user_model import User
 from typing import Optional
 
 class Book(SQLModel, table=True):

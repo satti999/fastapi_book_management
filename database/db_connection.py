@@ -3,16 +3,16 @@ from contextlib import contextmanager
 
 SQLALCHEMY_DATABASE_URL = "postgresql://postgres:admin@localhost:5432/fA_book_db"
 
-engine = create_engine(SQLALCHEMY_DATABASE_URL, echo=True)  # ✅ Add echo for debugging
+engine = create_engine(SQLALCHEMY_DATABASE_URL, echo=True)  # Add echo for debugging
 
 
 def init_db():
     """Initialize the database and create tables."""
     try:
         SQLModel.metadata.create_all(engine)
-        print("✅ Database initialized successfully!")
+        print(" Database initialized successfully!")
     except Exception as e:
-        print(f"❌ Error initializing database: {e}")
+        print(f" Error initializing database: {e}")
 
 
 @contextmanager
@@ -21,9 +21,9 @@ def get_session():
     session = Session(engine)
     try:
         yield session
-        session.commit()  # ✅ Ensure commits are handled
+        session.commit()  #  Ensure commits are handled
     except Exception as e:
-        session.rollback()  # ✅ Rollback on error
-        print(f"❌ Database session error: {e}")
+        session.rollback()  #  Rollback on error
+        print(f" Database session error: {e}")
     finally:
-        session.close()  # ✅ Always close session
+        session.close()  #  Always close session
