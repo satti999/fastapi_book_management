@@ -13,6 +13,7 @@ class UserController:
    
   def sign_up(self, user):
         email=user.email
+        print("email",email)
         password=user.password
         existing_user=self.db.exec(select(User).filter(User.email==email).first())
         if existing_user:
