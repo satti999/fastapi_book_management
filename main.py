@@ -8,7 +8,7 @@ from core.config import settings
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    init_db()  # ✅ Now properly initializes DB
+    init_db()  
     yield
 
 
