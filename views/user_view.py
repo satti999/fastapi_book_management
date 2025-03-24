@@ -11,7 +11,7 @@ router = APIRouter()
 
 
 @router.post("/sign-up")
-def signup_user(user: UserCreate, db: Session = Depends(get_session()),redis_client=Depends(get_redis())):
+def signup_user(user: UserCreate, db: Session = Depends(get_session()),redis_client=Depends(get_redis)):
     controller = UserController(db,redis_client)
     return controller.sign_up(user)
 

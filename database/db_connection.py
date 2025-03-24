@@ -1,7 +1,8 @@
 from sqlmodel import create_engine, SQLModel, Session
 from contextlib import contextmanager
+from core.config import settings
 
-SQLALCHEMY_DATABASE_URL = "postgresql://postgres:admin@localhost:5432/fA_book_db"
+SQLALCHEMY_DATABASE_URL = settings.DATABASE_URL
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL, echo=True)  # Add echo for debugging
 

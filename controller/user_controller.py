@@ -43,7 +43,7 @@ class UserController:
    
   def login(self, user: User):
        existing_user=self.db.exec(select(User).filter(User.email==user.email).first())
-       if  existing_user:
+       if existing_user:
          if not verify_password(user.password,existing_user.password):
             return JSONResponse(content={"message": "Invalid password"}, status_code=400)
          else:
